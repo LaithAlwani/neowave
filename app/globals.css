@@ -1,26 +1,56 @@
-@import "tailwindcss";
+/* Tailwind theme + utilities only. Preflight is intentionally skipped so the page
+   renders on browser defaults, exactly like the Claude Design artboards did. */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Neowave design tokens (light theme), from the canvas artboards / ds/neowave/tokens.json */
+:root{--surface:#fff;--surface-raised:#fff;--surface-sunken:#f3f6f8;--ink:#1f2933;--ink-muted:#52606d;--heading:#0b2545;--border:#d9e0e6;--border-strong:#7b8794;--navy:#0b2545;--teal:#0e9384;--teal-text:#0a6b60;--teal-tint:#e3f4f2;--action:#0b2545;--action-hover:#17406f;--on-action:#fff;--focus-ring:#0b2545;--success:#0a6b60;--warning:#8a5a00;--danger:#b42318;--info:#1d5fa8;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:24px;--space-6:32px;--space-7:48px;--space-8:64px;--radius-sm:6px;--radius-md:12px;--radius-lg:20px;--radius-xl:30px;--shadow-sm:0 1px 2px rgba(11,37,69,.08),0 2px 8px rgba(11,37,69,.06);--shadow-md:0 4px 12px rgba(11,37,69,.12),0 12px 32px rgba(11,37,69,.10);--font-sans:"Outfit",var(--font-cairo),system-ui,sans-serif;--font-arabic:var(--font-cairo),"Outfit",system-ui,sans-serif}
+/* "Outfit" is named directly rather than through next/font's --font-outfit variable: that
+   variable also lists the synthesized "Outfit Fallback" face, which carries Arabic glyphs
+   and would win over Cairo for Arabic text, as the design's "Outfit, Cairo" stack never did. */
+body{margin:0;background:#fff}
+a:focus-visible,button:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px;border-radius:6px}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/* Neowave design system components (ds/neowave/components/bundle.css, verbatim) */
+.nw-root{font-family:var(--font-sans);color:var(--ink)}
+.nw-btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-2);box-sizing:border-box;min-height:44px;padding:var(--space-3) 20px;border:1.5px solid transparent;border-radius:var(--radius-md);font:600 15px/1.2 var(--font-sans);cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;text-decoration:none}
+.nw-btn:focus-visible,.nw-field__input:focus-visible{outline:3px solid var(--focus-ring);outline-offset:2px}
+.nw-btn--primary{background:var(--action);color:var(--on-action)}
+.nw-btn--primary:hover{background:var(--action-hover)}
+.nw-btn--secondary{background:transparent;color:var(--heading);border-color:var(--border-strong)}
+.nw-btn--secondary:hover{background:var(--teal-tint)}
+.nw-btn--ghost{background:transparent;color:var(--teal-text)}
+.nw-btn--ghost:hover{background:var(--teal-tint)}
+.nw-btn--lg{min-height:52px;padding:var(--space-4) 28px;font-size:17px}
+.nw-btn--block{display:flex;width:100%}
+.nw-btn[disabled]{opacity:.5;cursor:not-allowed}
+.nw-badge{display:inline-flex;align-items:center;gap:var(--space-1);padding:var(--space-1) 10px;border-radius:var(--radius-sm);font:600 13px/18px var(--font-sans);background:var(--surface-sunken);color:var(--ink)}
+.nw-badge--brand{background:var(--teal-tint);color:var(--teal-text)}
+.nw-badge--success{background:var(--teal-tint);color:var(--success)}
+.nw-badge--warning{background:var(--surface-sunken);color:var(--warning)}
+.nw-badge--danger{background:var(--surface-sunken);color:var(--danger)}
+.nw-badge--info{background:var(--surface-sunken);color:var(--info)}
+.nw-badge svg{width:14px;height:14px;flex:none}
+.nw-field{display:flex;flex-direction:column;gap:var(--space-2);font-family:var(--font-sans)}
+.nw-field__label{font:600 14px/20px var(--font-sans);color:var(--ink)}
+.nw-field__input{box-sizing:border-box;min-height:44px;padding:var(--space-3) var(--space-4);border:1.5px solid var(--border-strong);border-radius:var(--radius-md);background:var(--surface-raised);color:var(--ink);font:400 16px/24px var(--font-sans)}
+.nw-field__input::placeholder{color:var(--ink-muted)}
+.nw-field__input[aria-invalid="true"]{border-color:var(--danger)}
+.nw-field__hint{font:400 13px/18px var(--font-sans);color:var(--ink-muted)}
+.nw-field__error{display:flex;gap:var(--space-1);align-items:center;font:500 13px/18px var(--font-sans);color:var(--danger)}
+.nw-field__error svg{width:16px;height:16px;flex:none}
+[dir="rtl"] .nw-field,[dir="rtl"] .nw-btn,[dir="rtl"] .nw-badge,[dir="rtl"] .nw-card{font-family:var(--font-arabic)}
+[dir="rtl"] .nw-field__label,[dir="rtl"] .nw-field__input{font-size:16px;line-height:26px}
+.nw-card{box-sizing:border-box;display:flex;flex-direction:column;gap:var(--space-4);padding:var(--space-5);background:var(--surface-raised);color:var(--ink);border:1px solid var(--border);border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);font-family:var(--font-sans)}
+.nw-card--featured{border:2px solid var(--action);box-shadow:var(--shadow-md);padding:calc(var(--space-5) - 1px)}
+.nw-card__name{margin:0;font:600 20px/28px var(--font-sans);color:var(--heading)}
+.nw-card__for{margin:0;font:400 14px/22px var(--font-sans);color:var(--ink-muted)}
+.nw-card__price{display:flex;align-items:baseline;gap:var(--space-2);color:var(--heading)}
+.nw-card__amount{font:700 40px/46px var(--font-sans)}
+.nw-card__period{font:400 14px/20px var(--font-sans);color:var(--ink-muted)}
+.nw-card__list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:var(--space-2);font:400 14px/22px var(--font-sans)}
+.nw-card__list li{display:flex;gap:var(--space-2);align-items:flex-start}
+.nw-card__list svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--teal-text)}
+.nw-card__note{margin:0;font:500 12px/18px var(--font-sans);color:var(--ink-muted)}
+[dir="rtl"] .nw-card__name,[dir="rtl"] .nw-card__amount{font-family:var(--font-arabic)}
+[dir="rtl"] .nw-card__for,[dir="rtl"] .nw-card__list{font-size:15px;line-height:26px;font-family:var(--font-arabic)}

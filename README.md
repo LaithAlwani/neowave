@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Neowave marketing site
 
-## Getting Started
+A Next.js 16 replica of the Neowave marketing page designed in Claude Design
+(canvas: https://claude.ai/artifact/UMunQCddB8qJ28GGbMZ4XA).
 
-First, run the development server:
+- `/` Arabic (RTL), the default page
+- `/en` English (LTR)
+- One responsive layout: the desktop artboards above 640px, the mobile artboard at 640px and below
+
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build; both routes are prerendered as static
+npm test         # vitest: content parity + contact validation
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contact form
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The form posts to a Server Action (`app/actions/contact.ts`) that validates the three
+fields and emails the request through [Resend](https://resend.com). Copy `.env.example`
+to `.env.local` and fill in:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|---|---|
+| `RESEND_API_KEY` | Resend API key |
+| `CONTACT_TO_EMAIL` | Recipient (comma-separate for several) |
+| `CONTACT_FROM_EMAIL` | Verified sender, e.g. `Neowave <hello@yourdomain.com>` |
 
-## Learn More
+Without these the action logs an error on the server and the form shows a generic
+"not sent" message; nothing crashes.
 
-To learn more about Next.js, take a look at the following resources:
+## Where things live
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Path | What |
+|---|---|
+| `content/ar.ts`, `content/en.ts` | Every string on the page, including the bracketed placeholders from the design |
+| `components/marketing-page.css` | Page styles ported from the artboards (desktop, `[dir="ltr"]` overrides, `<=640px` mobile block) |
+| `app/globals.css` | Design tokens and the Neowave design-system component CSS |
+| `components/ds/` | Button, Badge, TextField, PackageCard (ports of the design-system bundle) |
+| `components/sections/` | One file per page section |
+| `lib/fonts.ts` | Cairo and Outfit via `next/font/google` |
