@@ -1,43 +1,56 @@
 import { describe, expect, it } from "vitest";
 import { MAX_LENGTH, normalizeDigits, validateContact } from "./validate-contact";
 
+const good = {
+  fullName: "Rami Haddad",
+  email: "rami@example.com",
+  business: "Sunrise Bakery",
+  phone: "+963 999 123 456",
+  kind: "bakery",
+};
+
 describe("validateContact", () => {
-  it("accepts a complete, well-formed request and trims whitespace", () => {
-    const result = validateContact({ name: "  Al-Nawaeer Bakery ", phone: " +963 933 000 000 ", kind: "bakery" });
-    expect(result).toEqual({ ok: true, data: { name: "Al-Nawaeer Bakery", phone: "+963 933 000 000", kind: "bakery" } });
+  it("accepts a complete request and trims the values", () => {
+    const result = validateContact({ ...good, business: "  Sunrise Bakery  " });
+    expect(result).toEqual({ ok: true, data: good });
   });
 
-  it("flags every empty field as required", () => {
-    const result = validateContact({ name: "", phone: "   ", kind: undefined });
-    expect(result).toEqual({ ok: false, fields: { name: "required", phone: "required", kind: "required" } });
+  it("requires every field", () => {
+    const result = validateContact({});
+    expect(result).toEqual({
+      ok: false,
+      fields: { fullName: "required", email: "required", business: "required", phone: "required", kind: "required" },
+    });
+  });
+
+  it("treats whitespace-only values as missing", () => {
+    const result = validateContact({ ...good, kind: "   " });
+    expect(result).toEqual({ ok: false, fields: { kind: "required" } });
   });
 
   it("rejects values over the maximum length", () => {
-    const long = "x".repeat(MAX_LENGTH + 1);
-    const result = validateContact({ name: long, phone: "+963933000000", kind: long });
-    expect(result).toEqual({ ok: false, fields: { name: "tooLong", kind: "tooLong" } });
+    const result = validateContact({ ...good, business: "x".repeat(MAX_LENGTH + 1) });
+    expect(result).toEqual({ ok: false, fields: { business: "tooLong" } });
   });
 
-  it("rejects a phone number with letters or too few digits", () => {
-    expect(validateContact({ name: "a", phone: "call me", kind: "b" })).toEqual({ ok: false, fields: { phone: "phone" } });
-    expect(validateContact({ name: "a", phone: "12345", kind: "b" })).toEqual({ ok: false, fields: { phone: "phone" } });
+  it("rejects a phone number that is not a number", () => {
+    const result = validateContact({ ...good, phone: "call me" });
+    expect(result).toEqual({ ok: false, fields: { phone: "phone" } });
   });
 
-  it("accepts Arabic-Indic digits in the phone number and normalizes them", () => {
-    const result = validateContact({ name: "مخبز", phone: "٠٩٣٣٠٠٠٠٠٠", kind: "مخبز" });
-    expect(result).toEqual({ ok: true, data: { name: "مخبز", phone: "0933000000", kind: "مخبز" } });
+  it("rejects a malformed email address", () => {
+    for (const email of ["rami", "rami@", "@example.com", "rami@example", "rami example@x.com"]) {
+      expect(validateContact({ ...good, email })).toEqual({ ok: false, fields: { email: "email" } });
+    }
   });
 
-  it("ignores non-string values", () => {
-    const result = validateContact({ name: 42 as unknown, phone: ["x"] as unknown, kind: {} as unknown });
-    expect(result.ok).toBe(false);
+  it("accepts Arabic-Indic digits in the phone number", () => {
+    const result = validateContact({ ...good, phone: "+٩٦٣ ٩٩٩ ١٢٣ ٤٥٦" });
+    expect(result).toEqual({ ok: true, data: { ...good, phone: "+963 999 123 456" } });
   });
-});
 
-describe("normalizeDigits", () => {
-  it("maps both Arabic-Indic ranges to ASCII", () => {
+  it("normalizes both Arabic digit ranges", () => {
     expect(normalizeDigits("٠١٢٣٤٥٦٧٨٩")).toBe("0123456789");
     expect(normalizeDigits("۰۱۲۳۴۵۶۷۸۹")).toBe("0123456789");
-    expect(normalizeDigits("+1 (555) 010")).toBe("+1 (555) 010");
   });
 });

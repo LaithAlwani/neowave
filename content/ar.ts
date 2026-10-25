@@ -1,3 +1,4 @@
+import { privacyAr, termsAr } from "./legal-ar";
 import type { Content } from "./types";
 
 /* Strings copied from the Claude Design artboards Main.dc.html and Mobile.dc.html.
@@ -6,8 +7,11 @@ export const ar: Content = {
   locale: "ar",
   dir: "rtl",
   meta: {
-    title: "نيو ويف — الصفحة الرئيسية",
-    description: "حلول الويب والذكاء الاصطناعي، حماة، سوريا",
+    siteName: "نيو ويف",
+    title: "نيو ويف | مواقع إلكترونية وذكاء اصطناعي للأنشطة التجارية في حماة، سوريا",
+    description:
+      "نيو ويف تبني موقع نشاطك التجاري مجاناً وتستضيفه من ١٠ دولارات شهرياً: موقع مصمم للهاتف بالعربية والإنجليزية، وحجز إلكتروني، ووكلاء دردشة بالذكاء الاصطناعي. حماة، سوريا.",
+    keywords: ["تصميم مواقع حماة", "شركة ويب سوريا", "موقع إلكتروني للأنشطة التجارية", "نظام حجز إلكتروني", "وكيل دردشة ذكاء اصطناعي", "نيو ويف"],
   },
   brand: { logoAria: "نيو ويف" },
   nav: {
@@ -19,7 +23,7 @@ export const ar: Content = {
       { href: "#contact", label: "تواصل" },
     ],
     contact: "تواصل معنا",
-    lang: { label: "English", href: "/en", lang: "en" },
+    lang: { label: "English", lang: "en" },
     menuAria: "القائمة",
   },
   hero: {
@@ -123,7 +127,9 @@ export const ar: Content = {
       { icon: "pin", text: "حماة، سوريا" },
     ],
     fields: {
-      name: { label: "اسم النشاط" },
+      fullName: { label: "اسمك" },
+      email: { label: "البريد الإلكتروني", hint: "نراسلك هنا إن لم يصلك واتساب" },
+      business: { label: "اسم النشاط" },
       phone: { label: "رقم واتساب", hint: "اكتبه مع رمز الدولة" },
       kind: { label: "نوع النشاط", hint: "مثال: مخبز، عيادة، صالون" },
     },
@@ -139,9 +145,15 @@ export const ar: Content = {
       required: "هذا الحقل مطلوب",
       tooLong: "النص طويل جداً",
       phone: "اكتب رقماً صحيحاً مع رمز الدولة",
+      email: "اكتب بريداً إلكترونياً صحيحاً",
       generic: "لم يُرسل الطلب. حاول مرة أخرى أو تواصل معنا على واتساب.",
     },
+    toast: {
+      resendNotConfigured: "وصل الطلب. إرسال البريد ما زال بحاجة إلى إعداد: أضف مفاتيح Resend إلى ملف .env.local.",
+      dismiss: "إغلاق",
+    },
   },
-  footer: { tagline: "حلول الويب والذكاء الاصطناعي، حماة، سوريا" },
+  footer: { tagline: "حلول الويب والذكاء الاصطناعي، حماة، سوريا", links: [{ href: "/terms", label: "الشروط" }, { href: "/privacy", label: "الخصوصية" }] },
   mobileBar: { cta: "ابدأ موقعك" },
+  legal: { updatedLabel: "آخر تحديث", terms: termsAr, privacy: privacyAr },
 };

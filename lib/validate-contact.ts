@@ -1,17 +1,15 @@
-export type ContactField = "name" | "phone" | "kind";
-export type FieldError = "required" | "tooLong" | "phone";
+export type ContactField = "fullName" | "email" | "business" | "phone" | "kind";
+export type FieldError = "required" | "tooLong" | "phone" | "email";
 export type FieldErrors = Partial<Record<ContactField, FieldError>>;
 
-export interface ContactInput {
-  name: string;
-  phone: string;
-  kind: string;
-}
+export type ContactInput = Record<ContactField, string>;
 
 export type ContactValidation = { ok: true; data: ContactInput } | { ok: false; fields: FieldErrors };
 
+export const CONTACT_FIELDS: readonly ContactField[] = ["fullName", "email", "business", "phone", "kind"];
 export const MAX_LENGTH = 200;
 const PHONE = /^\+?[\d\s()-]{6,20}$/;
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Arabic-Indic (U+0660..U+0669) and Extended Arabic-Indic (U+06F0..U+06F9) digits -> ASCII. */
 export function normalizeDigits(value: string): string {
@@ -27,21 +25,30 @@ function asText(value: unknown): string {
 }
 
 export function validateContact(raw: Partial<Record<ContactField, unknown>>): ContactValidation {
-  const name = asText(raw.name);
-  const phone = normalizeDigits(asText(raw.phone));
-  const kind = asText(raw.kind);
+  const data: ContactInput = {
+    fullName: asText(raw.fullName),
+    email: asText(raw.email),
+    business: asText(raw.business),
+    phone: normalizeDigits(asText(raw.phone)),
+    kind: asText(raw.kind),
+  };
   const fields: FieldErrors = {};
 
-  if (!name) fields.name = "required";
-  else if (name.length > MAX_LENGTH) fields.name = "tooLong";
-
-  if (!phone) fields.phone = "required";
-  else if (phone.length > MAX_LENGTH) fields.phone = "tooLong";
-  else if (!PHONE.test(phone)) fields.phone = "phone";
-
-  if (!kind) fields.kind = "required";
-  else if (kind.length > MAX_LENGTH) fields.kind = "tooLong";
+  for (const field of CONTACT_FIELDS) {
+    if (!data[field]) fields[field] = "required";
+    else if (data[field].length > MAX_LENGTH) fields[field] = "tooLong";
+  }
+  if (!fields.phone && !PHONE.test(data.phone)) fields.phone = "phone";
+  if (!fields.email && !EMAIL.test(data.email)) fields.email = "email";
 
   if (Object.keys(fields).length > 0) return { ok: false, fields };
-  return { ok: true, data: { name, phone, kind } };
+  return { ok: true, data };
+}
+
+/** The form fields as submitted, untrimmed, so a failed attempt can echo them back. */
+export function contactInputFromFormData(formData: FormData): ContactInput {
+  const text = (value: FormDataEntryValue | null) => (typeof value === "string" ? value : "");
+  const input = {} as ContactInput;
+  for (const field of CONTACT_FIELDS) input[field] = text(formData.get(field));
+  return input;
 }

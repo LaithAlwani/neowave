@@ -1,0 +1,34 @@
+# Neowave
+
+> Neowave is a web and AI company in Hama, Syria. It builds websites for small businesses at no upfront cost and charges a small monthly subscription that covers hosting, a domain, weekly backups and small edits.
+
+## What Neowave offers
+
+- Website: a phone-first site in Arabic and English that makes it easy for customers to find and call the business.
+- Booking system: customers book an appointment or order themselves, and the details reach the business directly.
+- AI chat agent: answers common questions and takes orders.
+- Digital characters: a character that represents the brand and talks to customers in its style.
+
+## Packages (USD per month, paid monthly in advance, minimum term 12 months)
+
+- Starter, 10: hosting, domain, weekly backup, up to 3 small edits.
+- Business, 15: the most popular package.
+- Booking, 30: includes online booking for customers.
+
+Building the website itself is free. The monthly fee includes hosting, the domain, a weekly backup and up to 3 small edits.
+
+## How it starts
+
+1. The business sends its details through the contact form.
+2. Neowave replies on WhatsApp to learn about the business.
+3. Neowave builds the website.
+4. The business reviews it and the site goes live.
+
+## Pages
+
+- Arabic (default): / (home), /terms, /privacy
+- English: /en (home), /en/terms, /en/privacy
+
+## Location
+
+Hama, Syria. Languages: Arabic and English.

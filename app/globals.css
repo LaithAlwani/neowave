@@ -54,3 +54,17 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--focus-ring);outline
 .nw-card__note{margin:0;font:500 12px/18px var(--font-sans);color:var(--ink-muted)}
 [dir="rtl"] .nw-card__name,[dir="rtl"] .nw-card__amount{font-family:var(--font-arabic)}
 [dir="rtl"] .nw-card__for,[dir="rtl"] .nw-card__list{font-size:15px;line-height:26px;font-family:var(--font-arabic)}
+
+/* Site additions to the design system: transient toast (used after the contact form) */
+.nw-toast{position:fixed;inset-inline:16px;bottom:16px;z-index:20;box-sizing:border-box;width:auto;max-width:520px;margin-inline:auto;display:flex;align-items:flex-start;gap:var(--space-2);padding:var(--space-3) var(--space-4);border:1.5px solid var(--border);border-radius:var(--radius-md);background:var(--surface-raised);color:var(--ink);box-shadow:var(--shadow-md);font:500 14px/20px var(--font-sans);animation:nw-toast-in .25s ease both}
+.nw-toast>svg{width:18px;height:18px;flex:none;margin-top:1px}
+.nw-toast--success{background:var(--teal-tint);border-color:var(--teal);color:var(--teal-text)}
+.nw-toast--danger{border-color:var(--danger);color:var(--danger)}
+.nw-toast--info{border-color:var(--info);color:var(--info)}
+.nw-toast__text{margin:0;flex:1}
+.nw-toast__close{flex:none;appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-size:20px;line-height:20px;padding:0 4px;cursor:pointer;border-radius:var(--radius-sm)}
+.nw-toast__close:hover{background:rgba(11,37,69,.08)}
+[dir="rtl"] .nw-toast{font-family:var(--font-arabic);font-size:15px;line-height:24px}
+@keyframes nw-toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:640px){.nw-toast{bottom:92px}}
+@media (prefers-reduced-motion:reduce){.nw-toast{animation:none}}

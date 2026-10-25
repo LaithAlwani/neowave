@@ -19,7 +19,7 @@ export function Hero({ c }: { c: Content }) {
   const h = c.hero;
   return (
     <section className="n-hero">
-      <svg className="n-hero-wave" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
+      <svg className="n-hero-wave" data-inview="" viewBox="0 0 1200 220" fill="none" aria-hidden="true">
         <path
           className="n-draw"
           pathLength={1}

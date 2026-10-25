@@ -141,10 +141,12 @@
 @keyframes n-m3{0%,47%{opacity:0;transform:translateY(8px)}51%,92%{opacity:1;transform:none}97%,100%{opacity:0}}
 @keyframes n-t2{0%,56%{opacity:0}59%,67%{opacity:1}70%,100%{opacity:0}}
 @keyframes n-m4{0%,69%{opacity:0;transform:translateY(8px)}73%,92%{opacity:1;transform:none}97%,100%{opacity:0}}
-.n-hero-wave .n-draw{animation:n-dr 2.6s cubic-bezier(.5,0,.2,1) .2s both}
-@supports (animation-timeline:view()){
-.n-flow .n-draw,.n-cc-wave .n-draw{stroke-dashoffset:1;animation:n-dr linear both;animation-timeline:view();animation-range:entry 5% cover 55%}
-}
+/* Waves stay undrawn until InViewAnimations marks their <svg> as seen */
+.n-hero-wave .n-draw,.n-flow .n-draw,.n-cc-wave .n-draw{stroke-dashoffset:1}
+.n-hero-wave[data-inview="on"] .n-draw{animation:n-dr 2.6s cubic-bezier(.5,0,.2,1) .2s both}
+.n-flow[data-inview="on"] .n-draw{animation:n-dr 2s cubic-bezier(.5,0,.2,1) both}
+.n-cc-wave[data-inview="on"] .n-draw{animation:n-dr 1.8s cubic-bezier(.5,0,.2,1) both}
+.n-cc-wave[data-inview="on"] .n-draw+.n-draw{animation-delay:.25s}
 
 /* ---------- Tablet: the desktop artboards' own 900px rules, plus the hamburger ---------- */
 @media (max-width:900px){
@@ -237,3 +239,17 @@
 .n-m{animation:none!important;opacity:1}
 .n-typing{display:none}
 }
+
+/* ---------- Legal pages (terms, privacy) ---------- */
+.n-legal{padding-block:64px 96px}
+.n-legal .n-wrap{max-width:800px}
+.n-legal .n-legal-meta{margin:0 0 20px;color:var(--ink-muted);font-size:15px}
+.n-legal .n-sub{max-width:none;margin-bottom:40px}
+.n-legal section{margin-top:36px}
+.n-legal section p,.n-legal section li{margin:0 0 12px;color:var(--ink);font-size:17px;line-height:30px}
+.n-legal section ul{margin:0 0 12px;padding-inline-start:24px}
+.n-pg--legal .n-foot{padding-block:40px}
+@media (max-width:640px){.n-legal{padding-block:40px 64px}.n-pg.n-pg--legal .n-foot{padding-block:32px}}
+.n-foot-links{display:flex;gap:20px;flex-wrap:wrap}
+.n-foot-links a{color:var(--ink-muted);font-size:15px;text-decoration:none}
+.n-foot-links a:hover{color:var(--heading);text-decoration:underline}

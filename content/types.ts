@@ -15,16 +15,34 @@ export interface Package {
   badge?: string;
 }
 
+export interface LegalSection {
+  h: string;
+  p: string[];
+  list?: string[];
+}
+
+export interface LegalDoc {
+  /** Locale-independent path, e.g. "/terms". */
+  path: string;
+  title: string;
+  description: string;
+  /** ISO date of the last revision, shown on the page. */
+  updated: string;
+  intro: string;
+  sections: LegalSection[];
+}
+
 export interface Content {
   locale: Locale;
   dir: Dir;
-  meta: { title: string; description: string };
+  meta: { siteName: string; title: string; description: string; keywords: string[] };
   brand: { logoAria: string };
   nav: {
     aria: string;
+    /** Hash links into the home page, e.g. "#services". */
     links: { href: string; label: string }[];
     contact: string;
-    lang: { label: string; href: string; lang: Locale };
+    lang: { label: string; lang: Locale };
     menuAria: string;
   };
   hero: {
@@ -47,7 +65,9 @@ export interface Content {
     sub: string;
     info: { icon: IconName; text: string; ltr?: boolean }[];
     fields: {
-      name: { label: string };
+      fullName: { label: string };
+      email: { label: string; hint: string };
+      business: { label: string };
       phone: { label: string; hint: string };
       kind: { label: string; hint: string };
     };
@@ -55,8 +75,10 @@ export interface Content {
     sending: string;
     note: string;
     sent: { badge: string; title: string; body: string };
-    errors: { required: string; tooLong: string; phone: string; generic: string };
+    errors: { required: string; tooLong: string; phone: string; email: string; generic: string };
+    toast: { resendNotConfigured: string; dismiss: string };
   };
-  footer: { tagline: string };
+  footer: { tagline: string; links: { href: string; label: string }[] };
   mobileBar: { cta: string };
+  legal: { updatedLabel: string; terms: LegalDoc; privacy: LegalDoc };
 }

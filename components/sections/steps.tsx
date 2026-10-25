@@ -7,7 +7,7 @@ export function Steps({ c }: { c: Content }) {
       <div className="n-wrap">
         <h2 className="n-h2">{s.h2}</h2>
         <p className="n-sub">{s.sub}</p>
-        <svg className="n-flow" viewBox="0 0 1200 80" fill="none" aria-hidden="true">
+        <svg className="n-flow" data-inview="" viewBox="0 0 1200 80" fill="none" aria-hidden="true">
           <path
             className="n-draw"
             pathLength={1}

@@ -6,24 +6,51 @@ import { Badge } from "@/components/ds/badge";
 import { Button } from "@/components/ds/button";
 import { AlertIcon } from "@/components/ds/icons";
 import { TextField } from "@/components/ds/text-field";
+import { Toast } from "@/components/ds/toast";
 import type { Content } from "@/content/types";
-import type { FieldError } from "@/lib/validate-contact";
+import { contactInputFromFormData, type FieldError } from "@/lib/validate-contact";
 
 const idle: ContactState = { status: "idle" };
 
+/**
+ * The Server Action never throws, but the call itself can (offline, server unreachable,
+ * stale deployment). Catch that here so the visitor sees the generic error with their
+ * values intact instead of the page falling over to an error boundary.
+ */
+async function safeSubmit(prev: ContactState, formData: FormData): Promise<ContactState> {
+  try {
+    return await submitContact(prev, formData);
+  } catch (err) {
+    console.error("[contact] The request did not reach the server:", err);
+    return {
+      status: "error",
+      attempt: (prev.status === "error" ? prev.attempt : 0) + 1,
+      form: "generic",
+      values: contactInputFromFormData(formData),
+    };
+  }
+}
+
 export function ContactForm({ c }: { c: Content }) {
-  const [state, action, pending] = useActionState(submitContact, idle);
+  const [state, action, pending] = useActionState(safeSubmit, idle);
   const t = c.contact;
 
   if (state.status === "sent") {
     return (
-      <div className="n-form">
-        <div className="n-ok" role="status">
-          <Badge tone="success">{t.sent.badge}</Badge>
-          <h3 className="n-h3">{t.sent.title}</h3>
-          <p>{t.sent.body}</p>
+      <>
+        <div className="n-form">
+          <div className="n-ok" role="status">
+            <Badge tone="success">{t.sent.badge}</Badge>
+            <h3 className="n-h3">{t.sent.title}</h3>
+            <p>{t.sent.body}</p>
+          </div>
         </div>
-      </div>
+        {state.notice ? (
+          <Toast tone="success" dismissLabel={t.toast.dismiss}>
+            {t.toast[state.notice]}
+          </Toast>
+        ) : null}
+      </>
     );
   }
 
@@ -37,7 +64,9 @@ export function ContactForm({ c }: { c: Content }) {
       <input type="hidden" name="locale" value={c.locale} />
       {/* Remount the fields after each failed attempt so the typed values survive the form reset. */}
       <div key={error?.attempt ?? 0} style={{ display: "contents" }}>
-        <TextField id="biz-name" name="name" label={t.fields.name.label} dir={c.dir} defaultValue={values?.name} error={message(fields.name)} autoComplete="organization" />
+        <TextField id="c-full-name" name="fullName" label={t.fields.fullName.label} dir={c.dir} defaultValue={values?.fullName} error={message(fields.fullName)} autoComplete="name" />
+        <TextField id="c-email" name="email" type="email" label={t.fields.email.label} hint={t.fields.email.hint} dir="ltr" defaultValue={values?.email} error={message(fields.email)} autoComplete="email" />
+        <TextField id="biz-name" name="business" label={t.fields.business.label} dir={c.dir} defaultValue={values?.business} error={message(fields.business)} autoComplete="organization" />
         <TextField id="biz-phone" name="phone" type="tel" label={t.fields.phone.label} hint={t.fields.phone.hint} dir="ltr" defaultValue={values?.phone} error={message(fields.phone)} autoComplete="tel" />
         <TextField id="biz-kind" name="kind" label={t.fields.kind.label} hint={t.fields.kind.hint} dir={c.dir} defaultValue={values?.kind} error={message(fields.kind)} />
       </div>

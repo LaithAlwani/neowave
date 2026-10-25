@@ -1,3 +1,4 @@
+import { privacyEn, termsEn } from "./legal-en";
 import type { Content } from "./types";
 
 /* Strings copied from the Claude Design artboard English.dc.html.
@@ -6,8 +7,11 @@ export const en: Content = {
   locale: "en",
   dir: "ltr",
   meta: {
-    title: "Neowave — Home",
-    description: "Web and AI solutions, Hama, Syria",
+    siteName: "Neowave",
+    title: "Neowave | Websites and AI for businesses in Hama, Syria",
+    description:
+      "Neowave builds your business website for free and hosts it from USD 10 a month: a phone-first site in Arabic and English, online booking, and AI chat agents. Hama, Syria.",
+    keywords: ["web design Hama", "website company Syria", "small business website", "online booking system", "AI chat agent", "Neowave"],
   },
   brand: { logoAria: "Neowave" },
   nav: {
@@ -19,7 +23,7 @@ export const en: Content = {
       { href: "#contact", label: "Contact" },
     ],
     contact: "Contact us",
-    lang: { label: "العربية", href: "/", lang: "ar" },
+    lang: { label: "العربية", lang: "ar" },
     menuAria: "Menu",
   },
   hero: {
@@ -123,7 +127,9 @@ export const en: Content = {
       { icon: "pin", text: "Hama, Syria" },
     ],
     fields: {
-      name: { label: "Business name" },
+      fullName: { label: "Your name" },
+      email: { label: "Email address", hint: "We reply here if WhatsApp does not reach you" },
+      business: { label: "Business name" },
       phone: { label: "WhatsApp number", hint: "Include the country code" },
       kind: { label: "Type of business", hint: "For example: bakery, clinic, salon" },
     },
@@ -139,9 +145,15 @@ export const en: Content = {
       required: "This field is required",
       tooLong: "This is too long",
       phone: "Enter a valid number with the country code",
+      email: "Enter a valid email address",
       generic: "The request was not sent. Try again or message us on WhatsApp.",
     },
+    toast: {
+      resendNotConfigured: "Request received. Email delivery still needs setting up: add the Resend keys to .env.local.",
+      dismiss: "Dismiss",
+    },
   },
-  footer: { tagline: "Web and AI solutions, Hama, Syria" },
+  footer: { tagline: "Web and AI solutions, Hama, Syria", links: [{ href: "/terms", label: "Terms" }, { href: "/privacy", label: "Privacy" }] },
   mobileBar: { cta: "Start your website" },
+  legal: { updatedLabel: "Last updated", terms: termsEn, privacy: privacyEn },
 };

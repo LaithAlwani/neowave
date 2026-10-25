@@ -30,9 +30,27 @@ describe("content dictionaries", () => {
   });
 
   it("point the language links at each other", () => {
-    expect(ar.nav.lang.href).toBe("/en");
-    expect(en.nav.lang.href).toBe("/");
+    expect(ar.nav.lang.lang).toBe("en");
+    expect(en.nav.lang.lang).toBe("ar");
     expect(ar.dir).toBe("rtl");
     expect(en.dir).toBe("ltr");
+  });
+});
+
+describe("legal pages", () => {
+  it("mirror each other section by section", () => {
+    for (const key of ["terms", "privacy"] as const) {
+      const a = ar.legal[key];
+      const e = en.legal[key];
+      expect(a.path).toBe(e.path);
+      expect(a.updated).toBe(e.updated);
+      expect(a.sections.map((s) => s.p.length)).toEqual(e.sections.map((s) => s.p.length));
+    }
+  });
+
+  it("are linked from both footers", () => {
+    for (const c of [ar, en]) {
+      expect(c.footer.links.map((l) => l.href)).toEqual(["/terms", "/privacy"]);
+    }
   });
 });
