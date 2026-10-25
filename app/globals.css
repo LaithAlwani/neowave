@@ -68,3 +68,6 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--focus-ring);outline
 @keyframes nw-toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:640px){.nw-toast{bottom:92px}}
 @media (prefers-reduced-motion:reduce){.nw-toast{animation:none}}
+
+/* An LTR value (phone, email) inside an RTL form stays on the page's start side */
+[dir="rtl"] .nw-field__input[dir="ltr"]{text-align:right}

@@ -9,6 +9,7 @@ export interface TextFieldProps {
   type?: HTMLInputTypeAttribute;
   hint?: string;
   error?: string;
+  /** Direction of the typed value only (e.g. "ltr" for phone numbers and emails); label and hint follow the page. */
   dir?: "rtl" | "ltr";
   defaultValue?: string;
   placeholder?: string;
@@ -20,7 +21,7 @@ export interface TextFieldProps {
 export function TextField({ id, name, label, type = "text", hint, error, dir, defaultValue, placeholder, disabled, autoComplete, className }: TextFieldProps) {
   const describedBy = error ? `${id}-err` : hint ? `${id}-hint` : undefined;
   return (
-    <div className={cx("nw-field", className)} dir={dir}>
+    <div className={cx("nw-field", className)}>
       <label className="nw-field__label" htmlFor={id}>
         {label}
       </label>
@@ -28,6 +29,7 @@ export function TextField({ id, name, label, type = "text", hint, error, dir, de
         id={id}
         name={name}
         type={type}
+        dir={dir}
         className="nw-field__input"
         placeholder={placeholder}
         defaultValue={defaultValue}
