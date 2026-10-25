@@ -253,3 +253,7 @@
 .n-foot-links{display:flex;gap:20px;flex-wrap:wrap}
 .n-foot-links a{color:var(--ink-muted);font-size:15px;text-decoration:none}
 .n-foot-links a:hover{color:var(--heading);text-decoration:underline}
+
+/* Language toggle: globe icon + label */
+.n-lang{display:inline-flex;align-items:center;gap:6px}
+.n-lang-ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}

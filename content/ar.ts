@@ -127,7 +127,7 @@ export const ar: Content = {
       { icon: "pin", text: "حماة، سوريا" },
     ],
     fields: {
-      fullName: { label: "اسمك" },
+      fullName: { label: "الإسم" },
       email: { label: "البريد الإلكتروني", hint: "نراسلك هنا إن لم يصلك واتساب" },
       phone: { label: "رقم واتساب", hint: "اكتبه مع رمز الدولة" },
       message: { label: "عن شركتك", placeholder: "أخبرنا عن شركتك وما الذي تبحث عنه" },

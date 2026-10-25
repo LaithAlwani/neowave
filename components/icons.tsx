@@ -1,5 +1,5 @@
 /* Inline stroke icons used across the marketing page, copied from the artboards. */
-export type IconName = "pin" | "whatsapp" | "people" | "browser" | "calendar" | "chat" | "face" | "mail";
+export type IconName = "pin" | "whatsapp" | "people" | "browser" | "calendar" | "chat" | "face" | "mail" | "globe";
 
 const PATHS: Record<IconName, React.ReactNode> = {
   pin: (
@@ -44,6 +44,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
     <>
       <rect x={3} y={5} width={18} height={14} rx={3} />
       <path d="M3.5 7l8.5 6 8.5-6" />
+    </>
+  ),
+  globe: (
+    <>
+      <circle cx={12} cy={12} r={9} />
+      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
     </>
   ),
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Icon } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import type { Content } from "@/content/types";
 import { localePath } from "@/lib/site";
@@ -24,6 +25,7 @@ export function Nav({ c, path = "/" }: { c: Content; path?: string }) {
             ))}
           </div>
           <a className="n-lang" href={localePath(nav.lang.lang, path)} lang={nav.lang.lang} hrefLang={nav.lang.lang}>
+            <Icon name="globe" className="n-lang-ic" />
             {nav.lang.label}
           </a>
           <a className="nw-btn nw-btn--primary" href={`${home}#contact`}>

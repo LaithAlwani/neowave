@@ -1,3 +1,4 @@
+import { Icon } from "@/components/icons";
 import { Logo } from "@/components/logo";
 import type { Content } from "@/content/types";
 import { localePath } from "@/lib/site";
@@ -16,6 +17,7 @@ export function Footer({ c, path = "/" }: { c: Content; path?: string }) {
           ))}
         </nav>
         <a className="n-lang" href={localePath(c.nav.lang.lang, path)} lang={c.nav.lang.lang} hrefLang={c.nav.lang.lang}>
+          <Icon name="globe" className="n-lang-ic" />
           {c.nav.lang.label}
         </a>
       </div>
