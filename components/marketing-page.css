@@ -272,3 +272,13 @@
 .n-addon-h{margin:0 0 2px;font-weight:700;font-size:16px;line-height:24px;color:var(--heading)}
 .n-addon p{margin:0;color:var(--ink-muted);font-size:14px;line-height:22px}
 @media (max-width:640px){.n-addons{margin-top:32px}.n-addons-list{grid-template-columns:minmax(0,1fr);gap:18px}}
+
+/* Pricing: equal-height cards with the button on one line, and the billing toggle */
+.n-price-grid .nw-card{flex:1}
+.n-price-grid .nw-card__list{flex:1}
+.n-billing{display:inline-flex;gap:4px;margin:24px 0 32px;padding:4px;border:1.5px solid var(--border);border-radius:999px;background:var(--surface-sunken)}
+.n-billing-btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--ink-muted);font:600 15px/1 var(--font-sans);cursor:pointer}
+[dir="rtl"] .n-billing-btn{font-family:var(--font-arabic)}
+.n-billing-btn.is-on{background:#fff;color:var(--heading);box-shadow:var(--shadow-sm)}
+.n-billing-save{padding:3px 8px;border-radius:999px;background:var(--teal-tint);color:var(--teal-text);font-size:12px;font-weight:700}
+@media (max-width:640px){.n-billing{margin:20px 0 24px}}

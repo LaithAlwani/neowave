@@ -6,13 +6,28 @@ export type Dir = "rtl" | "ltr";
 export interface Package {
   name: string;
   audience: string;
-  price: string;
-  period: string;
+  /** Per-month price when paid for a year up front. */
+  priceYearly: string;
+  /** Per-month price when paid month by month. */
+  priceMonthly: string;
   features: string[];
   cta: string;
-  note: string;
   featured?: boolean;
   badge?: string;
+}
+
+export type Billing = "yearly" | "monthly";
+
+export interface BillingCopy {
+  /** Toggle labels. */
+  yearly: string;
+  monthly: string;
+  /** Small badge next to the yearly label. */
+  save: string;
+  /** Text under the amount for each billing mode. */
+  period: Record<Billing, string>;
+  /** Note under the button for each billing mode. */
+  note: Record<Billing, string>;
 }
 
 export interface LegalSection {
@@ -66,7 +81,7 @@ export interface Content {
   };
   steps: { h2: string; sub: string; items: { num: string; title: string; body: string }[] };
   ai: { h2: string; sub: string; chatAria: string; caption: string; messages: [string, string, string, string] };
-  pricing: { h2: string; sub: string; includes: string; packages: [Package, Package, Package] };
+  pricing: { h2: string; sub: string; includes: string; billing: BillingCopy; packages: [Package, Package, Package] };
   contact: {
     h2: string;
     sub: string;
