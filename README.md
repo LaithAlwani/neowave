@@ -61,3 +61,5 @@ catches a failed network call, so the page never falls over to an error boundary
 | `components/ds/` | Button, Badge, TextField, PackageCard (ports of the design-system bundle) |
 | `components/sections/` | One file per page section |
 | `lib/fonts.ts` | Cairo and Outfit via `next/font/google` |
+| `app/icon.tsx`, `app/apple-icon.tsx`, `public/favicon.ico` | Favicons generated from the logo mark (`components/icon-mark.tsx`) |
+| `vercel.json` | Pins the Next.js framework preset so Vercel uses the Next builder |
