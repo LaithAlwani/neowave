@@ -8,10 +8,10 @@ export const en: Content = {
   dir: "ltr",
   meta: {
     siteName: "Neowave",
-    title: "Neowave | Websites and AI for businesses in Hama, Syria",
+    title: "Neowave | Online presence for companies in Hama, Syria",
     description:
-      "Neowave builds your business website for free and hosts it from USD 10 a month: a phone-first site in Arabic and English, online booking, and AI chat agents. Hama, Syria.",
-    keywords: ["web design Hama", "website company Syria", "small business website", "online booking system", "AI chat agent", "Neowave"],
+      "Neowave sets up your company's online presence: a website built free, WhatsApp Business, social media accounts, a visual identity and ad images, from USD 10 a month. Hama, Syria.",
+    keywords: ["online presence Hama", "web design Syria", "WhatsApp Business setup", "social media accounts setup", "visual identity design", "Neowave"],
   },
   brand: { logoAria: "Neowave" },
   nav: {
@@ -27,10 +27,11 @@ export const en: Content = {
     menuAria: "Menu",
   },
   hero: {
-    badge: "Your website is built free",
+    badge: "Your online presence, set up for you",
     h1: "Be found online, trusted, and chosen",
-    lead: "Neowave is a web and AI company in Hama. We build your business website at no charge, and you pay a small monthly fee starting at USD 10.",
-    primary: "Start your website",
+    lead:
+      "Neowave sets up your company's online presence in Hama: a website, WhatsApp Business, social media accounts and a visual identity that looks professional everywhere. The website is built free, and you pay a small monthly fee starting at USD 10.",
+    primary: "Get set up online",
     secondary: "See packages",
     phoneAria: "Example of a local business website on a phone",
     phone: {
@@ -47,32 +48,42 @@ export const en: Content = {
     items: [
       { icon: "pin", label: "Google Maps" },
       { icon: "whatsapp", label: "WhatsApp" },
-      { icon: "people", label: "Facebook" },
+      { icon: "people", label: "Facebook and Instagram" },
     ],
   },
   services: {
-    h2: "What we build for your business",
-    sub: "We start with a clear, phone-first website, then add what your business needs as it grows.",
+    h2: "Everything your company needs to be present online",
+    sub: "Most companies have none of this set up properly. We do it all for you, with one consistent look, so customers find you and trust you.",
     items: [
-      { icon: "browser", title: "Website", body: "A phone-first site in Arabic and English that makes it easy for customers to find and call you." },
-      { icon: "calendar", title: "Booking system", body: "Customers book an appointment or order themselves, and the details reach you directly." },
-      { icon: "chat", title: "AI chat agent", body: "Answers common questions and takes orders, so no customer is lost to a slow reply." },
-      { icon: "face", title: "Digital characters", body: "A character that represents your brand and talks to customers in your style." },
+      { icon: "browser", title: "Website", body: "A phone-first site in Arabic and English that shows what you offer and makes it easy to call or message you." },
+      { icon: "whatsapp", title: "WhatsApp Business", body: "A proper business account with your profile, catalogue, greeting and quick replies, so customers can order and ask in one tap." },
+      { icon: "people", title: "Social media accounts", body: "Facebook, Instagram and your Google Maps listing, set up with the right name, logo, hours and contact details." },
+      { icon: "palette", title: "Visual identity", body: "Your logo, colours and fonts, applied consistently on your website, profiles and covers, so you look like one company." },
+      { icon: "image", title: "Social media ad images", body: "Ready-to-post designs for your offers and announcements, in your identity and sized for each platform." },
     ],
+    addons: {
+      title: "Also available as separate services",
+      items: [
+        { icon: "calendar", title: "Booking system", body: "Customers book an appointment or order themselves, and the details reach you directly." },
+        { icon: "chat", title: "AI chat agent and automation", body: "Answers common questions, takes orders, and connects to the tools you already use." },
+        { icon: "phone", title: "Custom social media app", body: "Your own app for your community, with your identity and the features you need." },
+        { icon: "face", title: "Digital characters", body: "A character that represents your brand and talks to customers in your style." },
+      ],
+    },
   },
   steps: {
     h2: "How we start",
     sub: "Four steps, and you pay nothing until you have seen your website.",
     items: [
       { num: "1", title: "Talk to us", body: "Tell us what you offer, who your customers are, and where they find you today." },
-      { num: "2", title: "We build your site", body: "We create it at no charge, and you review it with us before it goes live." },
-      { num: "3", title: "Choose a package", body: "A fixed monthly fee covering hosting, your domain, and a weekly backup." },
-      { num: "4", title: "We grow with you", body: "We make your small edits, and add bookings or the AI agent when you need them." },
+      { num: "2", title: "We set you up", body: "We build your website at no charge and set up WhatsApp Business, your social accounts and your identity. You review everything before it goes live." },
+      { num: "3", title: "Choose a package", body: "A fixed monthly fee covering hosting, your domain, a weekly backup and small edits." },
+      { num: "4", title: "We keep you present", body: "We make your small edits, design your ad images, and add bookings or the AI agent when you need them." },
     ],
   },
   ai: {
     h2: "An agent that replies when you can't",
-    sub: "It answers common questions, takes orders, and hands the conversation to you when it matters. You stay in charge.",
+    sub: "It answers common questions, takes orders, and hands the conversation to you when it matters. You stay in charge. Available as a separate service.",
     chatAria: "Example chat between a customer and an AI agent taking an order for Friday",
     caption: "Example conversation",
     messages: [
@@ -153,6 +164,6 @@ export const en: Content = {
     },
   },
   footer: { tagline: "Web and AI solutions, Hama, Syria", links: [{ href: "/terms", label: "Terms" }, { href: "/privacy", label: "Privacy" }] },
-  mobileBar: { cta: "Start your website" },
+  mobileBar: { cta: "Get set up online" },
   legal: { updatedLabel: "Last updated", terms: termsEn, privacy: privacyEn },
 };

@@ -1,13 +1,21 @@
 # Neowave
 
-> Neowave is a web and AI company in Hama, Syria. It builds websites for small businesses at no upfront cost and charges a small monthly subscription that covers hosting, a domain, weekly backups and small edits.
+> Neowave is a web and AI company in Hama, Syria. It sets up a company's online presence: a website built at no upfront cost, a WhatsApp Business account, social media accounts, a Google Maps listing, a visual identity and ready-to-post ad images. The company pays a small monthly subscription that covers hosting, a domain, weekly backups and small edits.
 
-## What Neowave offers
+## What every presence setup includes
 
-- Website: a phone-first site in Arabic and English that makes it easy for customers to find and call the business.
-- Booking system: customers book an appointment or order themselves, and the details reach the business directly.
-- AI chat agent: answers common questions and takes orders.
-- Digital characters: a character that represents the brand and talks to customers in its style.
+- Website: a phone-first site in Arabic and English that shows what the company offers and makes it easy to call or message.
+- WhatsApp Business: a proper business account with profile, catalogue, greeting and quick replies.
+- Social media accounts: Facebook, Instagram and the Google Maps listing, set up with the right name, logo, hours and contact details.
+- Visual identity: logo, colours and fonts applied consistently across the website, profiles and covers.
+- Social media ad images: ready-to-post designs for offers and announcements, sized for each platform.
+
+## Separate services
+
+- Booking system: customers book an appointment or order themselves.
+- AI chat agent and automation: answers common questions, takes orders, connects to existing tools.
+- Custom social media app.
+- Digital characters that represent the brand.
 
 ## Packages (USD per month, paid monthly in advance, minimum term 12 months)
 
@@ -19,10 +27,10 @@ Building the website itself is free. The monthly fee includes hosting, the domai
 
 ## How it starts
 
-1. The business sends its details through the contact form.
-2. Neowave replies on WhatsApp to learn about the business.
-3. Neowave builds the website.
-4. The business reviews it and the site goes live.
+1. The company sends its details through the contact form.
+2. Neowave replies on WhatsApp to learn about the company.
+3. Neowave builds the website and sets up WhatsApp Business, the social accounts and the identity.
+4. The company reviews everything and it goes live.
 
 ## Pages
 

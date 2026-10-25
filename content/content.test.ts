@@ -19,7 +19,8 @@ describe("content dictionaries", () => {
 
   it("carry the section counts from the design", () => {
     for (const c of [ar, en]) {
-      expect(c.services.items).toHaveLength(4);
+      expect(c.services.items).toHaveLength(5);
+      expect(c.services.addons.items).toHaveLength(4);
       expect(c.steps.items).toHaveLength(4);
       expect(c.pricing.packages).toHaveLength(3);
       expect(c.pricing.packages.filter((p) => p.featured)).toHaveLength(1);

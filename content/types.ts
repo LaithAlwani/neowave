@@ -56,7 +56,14 @@ export interface Content {
     bubbles: [string, string];
   };
   strip: { aria: string; title: string; items: { icon: IconName; label: string }[] };
-  services: { h2: string; sub: string; items: { icon: IconName; title: string; body: string }[] };
+  services: {
+    h2: string;
+    sub: string;
+    /** What every package sets up: the company's online presence. */
+    items: { icon: IconName; title: string; body: string }[];
+    /** Services sold separately from the packages. */
+    addons: { title: string; items: { icon: IconName; title: string; body: string }[] };
+  };
   steps: { h2: string; sub: string; items: { num: string; title: string; body: string }[] };
   ai: { h2: string; sub: string; chatAria: string; caption: string; messages: [string, string, string, string] };
   pricing: { h2: string; sub: string; includes: string; packages: [Package, Package, Package] };
