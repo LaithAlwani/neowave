@@ -14,9 +14,8 @@ const idle: ContactState = { status: "idle" };
 const good = {
   fullName: "Rami Haddad",
   email: "rami@example.com",
-  business: "Sunrise Bakery",
   phone: "+963 999 123 456",
-  kind: "bakery",
+  message: "A bakery in Hama. We want a site with a menu and WhatsApp orders.",
   locale: "en",
 };
 const goodValues = Object.fromEntries(Object.entries(good).filter(([k]) => k !== "locale"));
@@ -45,12 +44,12 @@ afterEach(() => {
 
 describe("submitContact", () => {
   it("returns field errors with the typed values and never calls Resend", async () => {
-    const state = await submitContact(idle, form({ fullName: "Rami", email: "nope", business: "  ", phone: "abc", kind: "", locale: "ar" }));
+    const state = await submitContact(idle, form({ fullName: "  ", email: "nope", phone: "abc", message: "", locale: "ar" }));
     expect(state).toEqual({
       status: "error",
       attempt: 1,
-      fields: { email: "email", business: "required", phone: "phone", kind: "required" },
-      values: { fullName: "Rami", email: "nope", business: "  ", phone: "abc", kind: "" },
+      fields: { fullName: "required", email: "email", phone: "phone" },
+      values: { fullName: "  ", email: "nope", phone: "abc", message: "" },
     });
     expect(send).not.toHaveBeenCalled();
   });
@@ -69,9 +68,10 @@ describe("submitContact", () => {
     expect(payload.from).toBe("Neowave <hello@example.com>");
     expect(payload.to).toEqual(["owner@example.com", "backup@example.com"]);
     expect(payload.replyTo).toBe("rami@example.com");
-    expect(payload.subject).toBe("New website request: Sunrise Bakery");
+    expect(payload.subject).toBe("New website request: Rami Haddad");
     expect(payload.text).toContain("Name: Rami Haddad");
     expect(payload.text).toContain("Email: rami@example.com");
+    expect(payload.text).toContain("About the business: A bakery in Hama.");
     expect(payload.text).toContain("WhatsApp number: +963 999 123 456");
     expect(payload.text).toContain("Language: en");
   });
@@ -82,7 +82,7 @@ describe("submitContact", () => {
     expect(state).toEqual({ status: "sent", notice: "resendNotConfigured" });
     expect(send).not.toHaveBeenCalled();
     expect(console.warn).toHaveBeenCalledOnce();
-    expect(String((console.warn as ReturnType<typeof vi.fn>).mock.calls[0][0])).toContain("Sunrise Bakery");
+    expect(String((console.warn as ReturnType<typeof vi.fn>).mock.calls[0][0])).toContain("Rami Haddad");
   });
 
   it("treats a recipient list of only commas and spaces as not configured", async () => {

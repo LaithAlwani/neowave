@@ -1,36 +1,36 @@
 import { describe, expect, it } from "vitest";
-import { MAX_LENGTH, normalizeDigits, validateContact } from "./validate-contact";
+import { MAX_LENGTH, MAX_MESSAGE_LENGTH, normalizeDigits, validateContact } from "./validate-contact";
 
 const good = {
   fullName: "Rami Haddad",
   email: "rami@example.com",
-  business: "Sunrise Bakery",
   phone: "+963 999 123 456",
-  kind: "bakery",
+  message: "A bakery in Hama. We want a site with a menu and WhatsApp orders.",
 };
 
 describe("validateContact", () => {
   it("accepts a complete request and trims the values", () => {
-    const result = validateContact({ ...good, business: "  Sunrise Bakery  " });
+    const result = validateContact({ ...good, fullName: "  Rami Haddad  " });
     expect(result).toEqual({ ok: true, data: good });
   });
 
-  it("requires every field", () => {
-    const result = validateContact({});
-    expect(result).toEqual({
+  it("requires name, email and phone but not the message", () => {
+    expect(validateContact({})).toEqual({
       ok: false,
-      fields: { fullName: "required", email: "required", business: "required", phone: "required", kind: "required" },
+      fields: { fullName: "required", email: "required", phone: "required" },
     });
+    expect(validateContact({ ...good, message: "" })).toEqual({ ok: true, data: { ...good, message: "" } });
   });
 
   it("treats whitespace-only values as missing", () => {
-    const result = validateContact({ ...good, kind: "   " });
-    expect(result).toEqual({ ok: false, fields: { kind: "required" } });
+    const result = validateContact({ ...good, fullName: "   " });
+    expect(result).toEqual({ ok: false, fields: { fullName: "required" } });
   });
 
   it("rejects values over the maximum length", () => {
-    const result = validateContact({ ...good, business: "x".repeat(MAX_LENGTH + 1) });
-    expect(result).toEqual({ ok: false, fields: { business: "tooLong" } });
+    expect(validateContact({ ...good, fullName: "x".repeat(MAX_LENGTH + 1) })).toEqual({ ok: false, fields: { fullName: "tooLong" } });
+    expect(validateContact({ ...good, message: "x".repeat(MAX_MESSAGE_LENGTH + 1) })).toEqual({ ok: false, fields: { message: "tooLong" } });
+    expect(validateContact({ ...good, message: "x".repeat(MAX_MESSAGE_LENGTH) }).ok).toBe(true);
   });
 
   it("rejects a phone number that is not a number", () => {

@@ -84,7 +84,7 @@ export const privacyEn: LegalDoc = {
     {
       h: "What we collect",
       p: [
-        "When you fill in the contact form we receive your name, email address, business name, WhatsApp number and type of business.",
+        "When you fill in the contact form we receive your name, email address, WhatsApp number and whatever you tell us about your business.",
         "When you visit the website, our hosting provider records standard technical data such as your IP address, browser type and the pages you open. We do not use it to identify you.",
       ],
     },

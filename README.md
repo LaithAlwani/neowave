@@ -31,7 +31,7 @@ npm run lint
 
 ## Contact form
 
-The form posts to a Server Action (`app/actions/contact.ts`) that validates the three
+The form posts to a Server Action (`app/actions/contact.ts`) that validates the
 fields and emails the request through [Resend](https://resend.com). Copy `.env.example`
 to `.env.local` and fill in:
 

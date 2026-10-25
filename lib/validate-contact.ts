@@ -1,4 +1,4 @@
-export type ContactField = "fullName" | "email" | "business" | "phone" | "kind";
+export type ContactField = "fullName" | "email" | "phone" | "message";
 export type FieldError = "required" | "tooLong" | "phone" | "email";
 export type FieldErrors = Partial<Record<ContactField, FieldError>>;
 
@@ -6,8 +6,10 @@ export type ContactInput = Record<ContactField, string>;
 
 export type ContactValidation = { ok: true; data: ContactInput } | { ok: false; fields: FieldErrors };
 
-export const CONTACT_FIELDS: readonly ContactField[] = ["fullName", "email", "business", "phone", "kind"];
+export const CONTACT_FIELDS: readonly ContactField[] = ["fullName", "email", "phone", "message"];
+const REQUIRED: readonly ContactField[] = ["fullName", "email", "phone"];
 export const MAX_LENGTH = 200;
+export const MAX_MESSAGE_LENGTH = 2000;
 const PHONE = /^\+?[\d\s()-]{6,20}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -28,18 +30,18 @@ export function validateContact(raw: Partial<Record<ContactField, unknown>>): Co
   const data: ContactInput = {
     fullName: asText(raw.fullName),
     email: asText(raw.email),
-    business: asText(raw.business),
     phone: normalizeDigits(asText(raw.phone)),
-    kind: asText(raw.kind),
+    message: asText(raw.message),
   };
   const fields: FieldErrors = {};
 
-  for (const field of CONTACT_FIELDS) {
+  for (const field of REQUIRED) {
     if (!data[field]) fields[field] = "required";
     else if (data[field].length > MAX_LENGTH) fields[field] = "tooLong";
   }
   if (!fields.phone && !PHONE.test(data.phone)) fields.phone = "phone";
   if (!fields.email && !EMAIL.test(data.email)) fields.email = "email";
+  if (data.message.length > MAX_MESSAGE_LENGTH) fields.message = "tooLong";
 
   if (Object.keys(fields).length > 0) return { ok: false, fields };
   return { ok: true, data };

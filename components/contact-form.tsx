@@ -5,10 +5,11 @@ import { submitContact, type ContactState } from "@/app/actions/contact";
 import { Badge } from "@/components/ds/badge";
 import { Button } from "@/components/ds/button";
 import { AlertIcon } from "@/components/ds/icons";
+import { TextArea } from "@/components/ds/text-area";
 import { TextField } from "@/components/ds/text-field";
 import { Toast } from "@/components/ds/toast";
 import type { Content } from "@/content/types";
-import { contactInputFromFormData, type FieldError } from "@/lib/validate-contact";
+import { contactInputFromFormData, MAX_MESSAGE_LENGTH, type FieldError } from "@/lib/validate-contact";
 
 const idle: ContactState = { status: "idle" };
 
@@ -66,9 +67,8 @@ export function ContactForm({ c }: { c: Content }) {
       <div key={error?.attempt ?? 0} style={{ display: "contents" }}>
         <TextField id="c-full-name" name="fullName" label={t.fields.fullName.label} defaultValue={values?.fullName} error={message(fields.fullName)} autoComplete="name" />
         <TextField id="c-email" name="email" type="email" label={t.fields.email.label} hint={t.fields.email.hint} dir="ltr" defaultValue={values?.email} error={message(fields.email)} autoComplete="email" />
-        <TextField id="biz-name" name="business" label={t.fields.business.label} defaultValue={values?.business} error={message(fields.business)} autoComplete="organization" />
         <TextField id="biz-phone" name="phone" type="tel" label={t.fields.phone.label} hint={t.fields.phone.hint} dir="ltr" defaultValue={values?.phone} error={message(fields.phone)} autoComplete="tel" />
-        <TextField id="biz-kind" name="kind" label={t.fields.kind.label} hint={t.fields.kind.hint} defaultValue={values?.kind} error={message(fields.kind)} />
+        <TextArea id="c-message" name="message" label={t.fields.message.label} placeholder={t.fields.message.placeholder} defaultValue={values?.message} error={message(fields.message)} maxLength={MAX_MESSAGE_LENGTH} />
       </div>
       {error?.form ? (
         <p className="n-form-err" role="alert">

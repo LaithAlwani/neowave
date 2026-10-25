@@ -67,9 +67,9 @@ export interface Content {
     fields: {
       fullName: { label: string };
       email: { label: string; hint: string };
-      business: { label: string };
       phone: { label: string; hint: string };
-      kind: { label: string; hint: string };
+      /** Optional free-text field that replaced "business name" and "type of business". */
+      message: { label: string; placeholder: string };
     };
     submit: string;
     sending: string;

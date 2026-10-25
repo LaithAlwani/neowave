@@ -54,13 +54,12 @@ export async function submitContact(prev: ContactState, formData: FormData): Pro
     return { status: "error", attempt, fields: validation.fields, values };
   }
 
-  const { fullName, email, business, phone, kind } = validation.data;
+  const { fullName, email, phone, message } = validation.data;
   const body = [
     `Name: ${fullName}`,
     `Email: ${email}`,
-    `Business name: ${business}`,
     `WhatsApp number: ${phone}`,
-    `Type of business: ${kind}`,
+    `About the business: ${message || "(not provided)"}`,
     `Language: ${locale}`,
     `Received: ${new Date().toISOString()}`,
   ].join("\n");
@@ -90,7 +89,7 @@ export async function submitContact(prev: ContactState, formData: FormData): Pro
         from,
         to,
         replyTo: email,
-        subject: `New website request: ${business.replace(/\s+/g, " ")}`,
+        subject: `New website request: ${fullName.replace(/\s+/g, " ")}`,
         text: body,
       }),
       SEND_TIMEOUT_MS,

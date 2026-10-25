@@ -120,7 +120,7 @@ export const en: Content = {
   },
   contact: {
     h2: "Tell us about your business",
-    sub: "Send us your business name and type, and we will message you on WhatsApp.",
+    sub: "Send us your details and a few words about your business, and we will message you on WhatsApp.",
     info: [
       { icon: "whatsapp", text: "[WhatsApp number]", ltr: true },
       { icon: "mail", text: "[Email address]", ltr: true },
@@ -129,9 +129,8 @@ export const en: Content = {
     fields: {
       fullName: { label: "Your name" },
       email: { label: "Email address", hint: "We reply here if WhatsApp does not reach you" },
-      business: { label: "Business name" },
       phone: { label: "WhatsApp number", hint: "Include the country code" },
-      kind: { label: "Type of business", hint: "For example: bakery, clinic, salon" },
+      message: { label: "About your business", placeholder: "Tell us about your business and what you are looking for" },
     },
     submit: "Send request",
     sending: "Sending…",

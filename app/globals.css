@@ -71,3 +71,5 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--focus-ring);outline
 
 /* An LTR value (phone, email) inside an RTL form stays on the page's start side */
 [dir="rtl"] .nw-field__input[dir="ltr"]{text-align:right}
+/* Multi-line field (TextArea) */
+textarea.nw-field__input{display:block;width:100%;min-height:132px;resize:vertical;font-family:inherit}
