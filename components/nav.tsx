@@ -24,9 +24,8 @@ export function Nav({ c, path = "/" }: { c: Content; path?: string }) {
               </a>
             ))}
           </div>
-          <a className="n-lang" href={localePath(nav.lang.lang, path)} lang={nav.lang.lang} hrefLang={nav.lang.lang}>
+          <a className="n-lang" href={localePath(nav.lang.lang, path)} lang={nav.lang.lang} hrefLang={nav.lang.lang} aria-label={nav.lang.label} title={nav.lang.label}>
             <Icon name="globe" className="n-lang-ic" />
-            {nav.lang.label}
           </a>
           <a className="nw-btn nw-btn--primary" href={`${home}#contact`}>
             {nav.contact}

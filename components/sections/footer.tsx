@@ -16,9 +16,8 @@ export function Footer({ c, path = "/" }: { c: Content; path?: string }) {
             </a>
           ))}
         </nav>
-        <a className="n-lang" href={localePath(c.nav.lang.lang, path)} lang={c.nav.lang.lang} hrefLang={c.nav.lang.lang}>
+        <a className="n-lang" href={localePath(c.nav.lang.lang, path)} lang={c.nav.lang.lang} hrefLang={c.nav.lang.lang} aria-label={c.nav.lang.label} title={c.nav.lang.label}>
           <Icon name="globe" className="n-lang-ic" />
-          {c.nav.lang.label}
         </a>
       </div>
     </footer>

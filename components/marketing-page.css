@@ -16,7 +16,7 @@
 .n-links a:hover{color:var(--teal-text)}
 .n-lang{color:var(--teal-text);font:600 15px/1 var(--font-sans);text-decoration:none;padding:12px 8px}
 .n-lang:hover{text-decoration:underline}
-.n-menu-btn{display:none;width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:12px;background:#fff;place-content:center;gap:5px;cursor:pointer;padding:0}
+.n-menu-btn{display:none;width:44px;height:44px;border:0;border-radius:12px;background:transparent;place-content:center;gap:5px;cursor:pointer;padding:0}
 .n-menu-btn span{display:block;width:20px;height:2.5px;border-radius:2px;background:var(--heading)}
 .n-sheet{display:none;position:absolute;inset-inline:0;top:84px;z-index:4;background:#fff;border-bottom:1px solid var(--border);box-shadow:var(--shadow-md);padding:8px 24px 20px;animation:m-drop .25s ease both}
 .n-sheet a{display:flex;align-items:center;min-height:52px;color:var(--heading);font-weight:700;font-size:18px;text-decoration:none;border-bottom:1px solid var(--border)}
@@ -254,6 +254,9 @@
 .n-foot-links a{color:var(--ink-muted);font-size:15px;text-decoration:none}
 .n-foot-links a:hover{color:var(--heading);text-decoration:underline}
 
-/* Language toggle: globe icon + label */
-.n-lang{display:inline-flex;align-items:center;gap:6px}
-.n-lang-ic{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+/* Language toggle: globe icon only (the language name is the link's aria-label and title) */
+.n-lang{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:0;border-radius:var(--radius-md)}
+.n-lang:hover{text-decoration:none;background:var(--teal-tint)}
+.n-lang-ic{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.n-pg .n-lang{padding:0}
+.n-menu-btn:hover{background:var(--teal-tint)}
