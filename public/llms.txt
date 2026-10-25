@@ -17,13 +17,13 @@
 - Custom social media app.
 - Digital characters that represent the brand.
 
-## Packages (USD per month, paid monthly in advance, minimum term 12 months)
+## Packages (USD per month when billed yearly; month-to-month price in brackets)
 
-- Starter, 10: hosting, domain, weekly backup, up to 3 small edits.
-- Business, 15: the most popular package.
-- Booking, 30: includes online booking for customers.
+- Starter, 9.99 (29.99): website, hosting, domain, Google Maps listing, WhatsApp Business profile, weekly backup, 3 small edits a month.
+- Business, 19.99 (59.99), most popular: everything in Starter plus an online booking system, Facebook and Instagram set up, a visual identity kit, 2 ad images a month, 5 small edits a month.
+- Growth, 39.99 (99.99): everything in Business plus a customer CRM (records, follow-ups, history), 4 ad images a month, a monthly check-in on profiles and listing, 10 small edits a month.
 
-Building the website itself is free. The monthly fee includes hosting, the domain, a weekly backup and up to 3 small edits.
+Building the website itself is free. Paying yearly saves more than 60% compared with paying month by month.
 
 ## How it starts
 

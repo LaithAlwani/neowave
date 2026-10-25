@@ -13,13 +13,15 @@ export const MAX_MESSAGE_LENGTH = 2000;
 const PHONE = /^\+?[\d\s()-]{6,20}$/;
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-/** Arabic-Indic (U+0660..U+0669) and Extended Arabic-Indic (U+06F0..U+06F9) digits -> ASCII. */
+/** Arabic-Indic (U+0660..U+0669) and Extended Arabic-Indic (U+06F0..U+06F9) digits -> ASCII; Arabic decimal separator (U+066B) -> ".". */
 export function normalizeDigits(value: string): string {
-  return value.replace(/[٠-٩۰-۹]/g, (d) => {
-    const code = d.charCodeAt(0);
-    const base = code >= 0x06f0 ? 0x06f0 : 0x0660;
-    return String(code - base);
-  });
+  return value
+    .replace(/[٠-٩۰-۹]/g, (d) => {
+      const code = d.charCodeAt(0);
+      const base = code >= 0x06f0 ? 0x06f0 : 0x0660;
+      return String(code - base);
+    })
+    .replace(/٫/g, ".");
 }
 
 function asText(value: unknown): string {

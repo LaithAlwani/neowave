@@ -26,8 +26,8 @@ export const termsEn: LegalDoc = {
     {
       h: "Subscription and payment",
       p: [
-        "Packages and prices are listed on our home page in US dollars. The fee is paid monthly in advance.",
-        "The minimum subscription term is twelve months. After that, either side can end the subscription with thirty days\u2019 written notice.",
+        "Packages and prices are listed on our home page in US dollars. You can pay month by month, or pay for a year in advance at the discounted yearly rate.",
+        "A yearly subscription runs for twelve months, is paid in advance and is not refunded if you stop early. A monthly subscription can be ended by either side with thirty days\u2019 written notice.",
         "If a payment is more than fourteen days late we may take the website offline after notifying you, and we may end the subscription if payment is not received within thirty days.",
       ],
     },

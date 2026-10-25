@@ -29,7 +29,7 @@ export function GET() {
           <span style={{ color: "#3dd6c3" }}>wave</span>
         </div>
         <div style={{ marginTop: 24, fontSize: 40, color: "#cfe3e0" }}>Web and AI solutions, Hama, Syria</div>
-        <div style={{ marginTop: 16, fontSize: 30, color: "#a9b8c8" }}>Your business website, built free, from USD 10 a month</div>
+        <div style={{ marginTop: 16, fontSize: 30, color: "#a9b8c8" }}>Your business website, built free, from USD 9.99 a month</div>
       </div>
     ),
     size,

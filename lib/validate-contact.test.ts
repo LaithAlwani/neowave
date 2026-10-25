@@ -52,5 +52,6 @@ describe("validateContact", () => {
   it("normalizes both Arabic digit ranges", () => {
     expect(normalizeDigits("٠١٢٣٤٥٦٧٨٩")).toBe("0123456789");
     expect(normalizeDigits("۰۱۲۳۴۵۶۷۸۹")).toBe("0123456789");
+    expect(normalizeDigits("٩٫٩٩")).toBe("9.99");
   });
 });
