@@ -23,7 +23,7 @@ function organization(c: Content) {
     address: { "@type": "PostalAddress", addressLocality: "Hama", addressCountry: "SY" },
     areaServed: { "@type": "Country", name: "Syria" },
     knowsLanguage: ["ar", "en"],
-    priceRange: "USD 9.99 - 99.99 per month",
+    priceRange: "USD 10 - 150 per month",
     makesOffer: c.pricing.packages.map((p) => ({
       "@type": "Offer",
       name: p.name,

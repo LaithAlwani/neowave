@@ -281,4 +281,5 @@
 [dir="rtl"] .n-billing-btn{font-family:var(--font-arabic)}
 .n-billing-btn.is-on{background:#fff;color:var(--heading);box-shadow:var(--shadow-sm)}
 .n-billing-save{padding:3px 8px;border-radius:999px;background:var(--teal-tint);color:var(--teal-text);font-size:12px;font-weight:700}
+.n-promo{margin:16px 0 0;max-width:640px;font-size:14px;line-height:1.6;color:var(--ink-muted)}
 @media (max-width:640px){.n-billing{margin:20px 0 24px}}

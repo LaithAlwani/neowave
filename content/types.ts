@@ -24,6 +24,8 @@ export interface BillingCopy {
   monthly: string;
   /** Small badge next to the yearly label. */
   save: string;
+  /** Shown under the toggle in yearly mode: the yearly price is a promotion. */
+  promo: string;
   /** Text under the amount for each billing mode. */
   period: Record<Billing, string>;
   /** Note under the button for each billing mode. */

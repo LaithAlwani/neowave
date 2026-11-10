@@ -29,6 +29,7 @@ export function Pricing({ c }: { c: Content }) {
             </button>
           ))}
         </div>
+        {billing === "yearly" ? <p className="n-promo">{b.promo}</p> : null}
         <div className="n-price-grid">
           {p.packages.map((pkg) => (
             <div key={pkg.name}>
